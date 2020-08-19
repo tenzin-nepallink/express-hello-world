@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hello-ingress
+  namespace: stage
+  annotations:
+    projectcontour.io/ingress.class: "stage"
+    #kubernetes.io/ingress.class: "dx-prod"
+    ingress.kubernetes.io/force-ssl-redirect: "false"
+    #ingress.kubernetes.io/ssl-passthrough: "true"
+    #kubernetes.io/ingress.allow-http: "true"
+    #kubernetes.io/tls-acme: "true"
+    #ingress.kubernetes.io/backend-protocol: "HTTP"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hello-world
+          servicePort: 3000 
+    host: hello.intuaition.com
